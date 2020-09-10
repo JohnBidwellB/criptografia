@@ -53,7 +53,7 @@ def enter_login():
 
 def enter_update_profile():
     time.sleep(5)
-    driver.get('http://test.teroapp.com//app/profile')
+    driver.get('http://test.teroapp.com/app/profile')
     update_user_button = driver.find_element_by_id('updateUserButton')
     update_user_button.click()
 
