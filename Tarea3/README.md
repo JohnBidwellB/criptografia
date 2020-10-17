@@ -138,7 +138,7 @@ Es debido a estas limitaciones que el algormitmo solo permite asignar nuevos val
 // @version      0.1
 // @description  Desencripta un mensaje cifrado mediante algoritmo AES
 // @author       John Bidwell
-// @match        http://criptografia-tarea3.surge.sh/
+// @match        https://johnbidwellb.github.io/criptografia/Tarea3/index.html
 // @require      https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js
 // @grant        none
 // ==/UserScript==
@@ -249,7 +249,7 @@ if (decryptedText) {
 
 Finalmente la variable `decryptedText` almacena en forma de `string` el mensaje ya desencriptado y, en caso de que el desencriptado sea exitoso, este mensaje se podrá visualizar a través del navegador.
 
-Este scrypt se incorporó en `Tampermonkey`, donde se hace match a `https://htmlpreview.github.io/?https://github.com/JohnBidwellB/criptografia/blob/tarea3/Tarea3/index.html` que es un enlace que permite visualizar el `HTML` alojado en Github.
+Este scrypt se incorporó en `Tampermonkey`, donde se hace match a `https://johnbidwellb.github.io/criptografia/Tarea3/index.html` que es un enlace que permite visualizar el `HTML` alojado en Github.
 
 ## Enlaces
 
@@ -258,7 +258,7 @@ Los enlaces del código utilizado son:
 * Repositorio código: https://github.com/JohnBidwellB/criptografia/tree/tarea3/Tarea3
 * Crypto: https://github.com/chrissimpkins/crypto
 * crypto-js: https://github.com/brix/crypto-js
-* Preview HTML: http://criptografia-tarea3.surge.sh/
+* Preview HTML: https://johnbidwellb.github.io/criptografia/Tarea3/index.html
 
 ## Conclusiones
 
