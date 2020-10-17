@@ -7,8 +7,6 @@ import base64
 import argparse
 from sys import exit
 
-# Variables
-
 BLOCK_SIZE = 16
 SEGMENT_SIZE = 128
 KEY = "2SQf1WNQnxYleSmg"  # Debe ser de BLOCK_SIZE caracteres
@@ -54,22 +52,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Permite cifrar un mensaje utilizando el algoritmo Rijndael"
     )
-
-    # parser.add_argument("-b", "--blocksize", dest="blocksize", type=int, default=16,
-    #                     help="Tamaño del bloque (16, 24 o 32)")
-    # parser.add_argument("-s", "--segmentsize", dest="segmentsize", type=int, default=128,
-    #                     help="Tamaño del segmento (128, 192 o 256 bits). Debe coincidir en bytes con el tamaño del bloque")
     parser.add_argument("-k", "--key", dest="key", type=str, default="2SQf1WNQnxYleSmg",
-                        help="Llave para cifrar/descifrar el mensaje, debe tener la misma cantidad de caracteres que el tamaño del bloque")
+                        help="Llave para cifrar/descifrar el mensaje, debe tener 16 caracteres")
     parser.add_argument("-t", "--text", dest="text",
                         type=str, help="Mensaje a cifrar")
 
     args = parser.parse_args()
 
-    # if (args.blocksize == 16 and args.segmentsize == 128 and len(args.key) == 16 or args.blocksize == 24 and args.segmentsize == 192 and len(args.key) == 24 or args.blocksize == 32 and args.segmentsize == 256 and len(args.key) == 32):
     if (len(args.key) == 16):
-        # BLOCK_SIZE = args.blocksize
-        # SEGMENT_SIZE = args.segmentsize
         KEY = args.key
         if args.text:
             text_to_encrypt = args.text

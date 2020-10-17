@@ -4,8 +4,7 @@
 // @version      0.1
 // @description  Desencripta un mensaje cifrado mediante algoritmo AES
 // @author       John Bidwell
-// @match        http://localhost:5000/
-// @matchh        https://htmlpreview.github.io/?https://github.com/JohnBidwellB/criptografia/blob/tarea3/Tarea3/index.html
+// @match        https://htmlpreview.github.io/?https://github.com/JohnBidwellB/criptografia/blob/tarea3/Tarea3/index.html
 // @require      https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js
 // @grant        none
 // ==/UserScript==
@@ -17,7 +16,7 @@
 
 	let ciphertext = CryptoJS.enc.Base64.parse(cipheredText);
 
-	// split iv and ciphertext
+	// split iv y ciphertext
 	let iv = ciphertext.clone();
 	iv.sigBytes = 16;
 	iv.clamp();
@@ -32,12 +31,14 @@
 	 * en la variable customKey
 	 */
 	let customKey = null;
-	if (customKey) {
+	if (customKey && customKey.length === 16) {
 		customKey = CryptoJS.enc.Utf8.parse(customKey);
+	} else {
+		customKey = null;
 	}
 
-	// decryption
-	var decrypted = CryptoJS.AES.decrypt(
+	// desencriptado
+	let decrypted = CryptoJS.AES.decrypt(
 		{ ciphertext: ciphertext },
 		customKey || htmlKey,
 		{
@@ -47,7 +48,6 @@
 	);
 
 	const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
-
 	if (decryptedText) {
 		document.getElementById("title").innerHTML = "El mensaje oculto es";
 		document.getElementById("decodedText").innerHTML = decryptedText;
