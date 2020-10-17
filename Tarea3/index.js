@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Desencripta un mensaje cifrado mediante algoritmo AES
 // @author       John Bidwell
-// @match        https://htmlpreview.github.io/?https://github.com/JohnBidwellB/criptografia/blob/tarea3/Tarea3/index.html
+// @match        http://criptografia-tarea3.surge.sh/
 // @require      https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js
 // @grant        none
 // ==/UserScript==
