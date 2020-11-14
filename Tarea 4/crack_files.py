@@ -68,7 +68,7 @@ def recv_message(sock):
     try:
         header = sock.recv(2)
         while b':' not in header:
-            header += sock.recv(2) # Keep loking 2 bytes each time
+            header += sock.recv(2) # Recibe de 2 bytes a la vez 
         size_of_package, separator, message_fragment = header.partition(b':')
         message = sock.recv(int(size_of_package))
         full_message = message_fragment + message
@@ -79,6 +79,8 @@ def recv_message(sock):
         print('unexpected error')
         raise
 
+
+# Envia el archivo al cliente
 def send_file(sock):
     filename = 'rsa_passwords.txt'
     # Obtiene el tamano del archivo en bytes
@@ -101,18 +103,18 @@ def send_file(sock):
     print('=== Finaliza envio de archivo ===')
 
 
-# FILES = [FILE_1, FILE_2,FILE_3,FILE_4,FILE_5]
+FILES = [FILE_1, FILE_2,FILE_3,FILE_4,FILE_5]
 
-# crack_files(FILES)
+crack_files(FILES)
 
-# create_file([FILE_1['output'], FILE_2['output'], FILE_3['output'], FILE_4['output'], FILE_5['output']])
+create_file([FILE_1['output'], FILE_2['output'], FILE_3['output'], FILE_4['output'], FILE_5['output']])
 
-# rehash()
+rehash()
 
-# Create TCP/IP socket
+# Crea el TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Connect to the server port
+# Conecta al servidor
 server_address = ('localhost', 10009)
 print('connecting to {} port {}'.format(*server_address))
 sock.connect(server_address)
@@ -120,12 +122,12 @@ sock.connect(server_address)
 BUFFER_SIZE = 1024
 
 try:
-    # Send key request
+    # Envia la peticion de llave publica
     message = b'REQUEST_PUBLIC_KEY'
     print('Sending {}'.format(message))
     sock.sendall(message)
 
-    # Look for the response
+    # Recibe la respuesta
     public_key = recv_message(sock)
     n = ''
     if public_key:

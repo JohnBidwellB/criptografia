@@ -7,7 +7,7 @@ import numpy as np
 
 PRIME_LIMIT = 1000000000
 
-# Check if number is prime
+# chequea si un numero es primo
 def is_prime(num):
 	if num == 2:
 		return True
@@ -18,7 +18,7 @@ def is_prime(num):
 			return False
 	return True
 
-# Return primer number
+# Retorna un numero primo
 def get_prime(limit = PRIME_LIMIT):
 	num = 0
 	while True:
@@ -27,13 +27,13 @@ def get_prime(limit = PRIME_LIMIT):
 			break
 	return num
 
-# Calculate the greatest common divisor between two numbers
+# Calcula el maximo comun divisor entre dos numeros
 def greatest_common_divisor(a, b):
 	while b != 0:
 		a, b = b, a % b
 	return a
 
-# Calculate modular multiplicative inverse
+# Calcula el inverso multiplicativo modular
 def modular_multiplicative_inverse(e, phi):
 	if e == 0:
 		return (phi, 0, 1)
@@ -41,43 +41,39 @@ def modular_multiplicative_inverse(e, phi):
 		g, y, x = modular_multiplicative_inverse(phi % e, e)
 	return (g, x - (phi // e) * y, y)
 
-# Public and Private Key generation
+# Genera las llaves publicas y privadas
 def generate_keys(p, q):
 	if not (is_prime(p) and is_prime(q)):
 		raise ValueError('Ambos numeros deben ser primos')
 	elif p == q:
 		raise ValueError('Ambos numeros deben ser distintos')
 
-	# Compute n
+	# Computa n
 	n = p * q
 
-	# Compute phi
+	# Computa phi
 	phi = (p - 1) * (q - 1)
 
-	# Calculate encryption key
-	e = random.randrange(1, phi) # Choose an integer number
-	g = greatest_common_divisor(e, phi) # Calculate greatest common divisor
-	while g != 1: # Calculate until find coprime numbers
-		e = random.randrange(1, phi) # Choose an integer number
-		g = greatest_common_divisor(e, phi) # Calculate greatest common divisor
+	# Calcula la llave de encriptacion
+	e = random.randrange(1, phi) # Escoge un numero entero
+	g = greatest_common_divisor(e, phi) # Calcula el maximo comun divisor
+	while g != 1: # Calcula numero hasta encontrar coprimos
+		e = random.randrange(1, phi) 
+		g = greatest_common_divisor(e, phi) 
 
-
-	# Calculate decryption key
+	# Calcula la llave de desencriptacion
 	d = modular_multiplicative_inverse(e, phi)[1]
 	d = d % phi
 	if d < 0:
 		d += phi
 
-	# Return public key (e), private key (d) and n
+	# Llave publica (e), llave privada(d) y n
 	return (e, d, n)
 
 # Desencripta los hashes RSA
 def decrypt(private_key, n, cipher_text):
-	# print('params', private_key, type(private_key), n, type(n), cipher_text, type(cipher_text))
 	try: 
-		#password = [chr((int(char) ** int(private_key)) % n) for char in cipher_text] 
 		password = [chr(pow(ord(char), private_key, n)) for char in cipher_text]
-		# print('PASS', password)
 		return ''.join(password)
 	except TypeError as e:
 		pass
@@ -124,15 +120,15 @@ def decrypt_file(private_key, n, filename):
 def save_to_sqlite():
 	pass
 
-# Create TCP/IP socket
+# Crea el socket TCP/IPa
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Bind the socket to the port
+# Enlaza el socket al puerto
 server_address = ('localhost', 10009)
 print('Server started on {} port {}'.format(*server_address))
 sock.bind(server_address)
 
-# Listen for incoming connections
+# Espera por una conexion
 sock.listen(1)
 
 BUFFER_SIZE = 1024
@@ -146,7 +142,7 @@ while True:
 		p,q = get_prime(), get_prime()
 		while p == q:
 			q = get_prime()
-		# Receive the request and send the keys
+		# Recibe la peticion y envia las llaves
 		while True: 
 			request = connection.recv(BUFFER_SIZE)
 			print('request: ', request)
@@ -166,5 +162,5 @@ while True:
 				break
 
 	finally:
-		# Clean up the connection
+		# Cierra la coneccion
 		connection.close()
