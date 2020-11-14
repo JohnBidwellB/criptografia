@@ -28,8 +28,11 @@ archivos = [ARCHIVO_1]
 # Crackeo de los archivos
 for archivo in archivos:
     start_time = time.time()
-    os.system(HASHCAT + ' -m ' + str(archivo['mode']) + ' -o ' + archivo['output'] +
-              ' ' + archivo['path'] + ' ' + DICCIONARIO_2)
+    command = "hashcat -m 0 -o cracked.txt ./ArchivoTarea4/Hashes/archivo_11 ./ArchivoTarea4/diccionarios/diccionario_2.dict --force"
+    print(command)
+    os.system(command)
+    # os.system(HASHCAT + ' -m ' + str(archivo['mode']) + ' -o ' + archivo['output'] +
+    #   ' ' + archivo['path'] + ' ' + DICCIONARIO_2)
     print("--- %s seconds ---" % (time.time() - start_time))
 
 # ./hashcat - m 0 - o ../Google\ Drive/Material\ estudio/Criptografía/Tarea\ 4/ArchivoTarea4/Hashes/cracked11.txt ../Google\ Drive/Material\ estudio/Criptografía/Tarea\ 4/ArchivoTarea4/Hashes/archivo_11 ../Google\ Drive/Material\ estudio/Criptografía/Tarea\ 4/ArchivoTarea4/diccionarios/diccionario_1.dict
