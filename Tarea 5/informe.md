@@ -83,10 +83,24 @@ def get_message_ids(msgs):
 
 ## Expresión regular
 
-Se logró recopilar la información de los 540 mails disponibles en la cuenta, de los cuales 539 pasaron la prueba de la expresión regular, solo falló en un caso (ver imagen a continuación), el cual corresponde a un email enviado el día 26 de noviembre de 2019 el cual utiliza un servidor de email distinto. Sin embargo, el primer email en la bandeja de entrada corresponde al día 30 de enero, el cual si pasa la prueba de la expresión regular.
+Para encontrar una expresión regular que sirviera para analizar los Message-ID se recopiló la información de los 540 mails disponibles en la cuenta. Con esto se llegó a la conclusión de que utilizan principalmente dos servicios de email: Sendgrid y geopod (el cual pertenece a Sendrid). Es por esto que se utilizó una expresión regular que sirviera para ambos casos:
+
+```
+^[a-zA-Z0-9_-]{22}@ismtpd0[0-1]{1}[0-9]{2}p1[a-z]{3}[1-2].sendgrid.net$|^[a-zA-Z0-9_-]{22}@geopod-ismtpd-[0-9]{1}-[0-9]{1}$
+```
+
+Para comprobar la expresión regular con los Messaeg-ID se utilizó la página https://regex101.com/, en la cal de los 540 emails, 539 pasaron la prueba de la expresión regular, solo falló en un caso (ver imagen a continuación), el cual corresponde a un email enviado el día 26 de noviembre de 2019 el cual utiliza un servidor de email distinto. Sin embargo, el primer email en la bandeja de entrada corresponde al día 30 de enero, el cual si pasa la prueba de la expresión regular.
 
 ![](./images/redistinta.png)
 
 Y en la siguiente captura se puede ver como los 539 de 540 Message-ID analizados pasaron la prueba, teniendo como el email más antiguo el día 30 de enero de 2019 y el más reciente el día 26 de noviembre 2020.
 
 ![](./images/539matches.png)
+
+## Email spoofing
+
+Este item no se pudo realizar, por más que se intentó con diversas páginas (https://emkei.cz/ , http://www.anonymailer.net/ , http://www.sendanonymousemail.net/ , entre otras) ninguna logró enviar un email a mi cuenta usando como remite `noreply@medium.com`, incluso utilizando otros emails ninguna de estas páginas logró hacer el envío.
+
+## Código
+
+Se puede encontrar el código utilizado ingresando enc https://github.com/JohnBidwellB/criptografia/tree/tarea5/Tarea%205 .
