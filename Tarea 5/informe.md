@@ -104,3 +104,7 @@ Este item no se pudo realizar, por más que se intentó con diversas páginas (h
 ## Código
 
 Se puede encontrar el código utilizado ingresando enc https://github.com/JohnBidwellB/criptografia/tree/tarea5/Tarea%205 .
+
+## Video
+
+El video explicativo se puede encontrar en https://drive.google.com/file/d/15XWzUeJ9XT_M8RC9k6rc0cFBAdG4oAkQ/view?usp=sharing

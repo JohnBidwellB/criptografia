@@ -25,9 +25,13 @@ def check_emails():
 
 
 if __name__ == "__main__":
+    print("=== Conectando al servidor ===")
     mail_server = connect()
+    print("=== Buscando emails ===")
     mail_ids = search_by_email(mail_server, EMAILS_FROM)
+    print("=== Fetch emails ===")
     messages = get_emails(mail_server, mail_ids)
+    print("=== Obtención Message-ID ===")
     message_ids = get_message_ids(messages)
     create_file(message_ids)
     # check_emails()
